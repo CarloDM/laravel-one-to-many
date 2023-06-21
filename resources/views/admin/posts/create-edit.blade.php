@@ -48,6 +48,20 @@
         {{-- --------------------------- --}}
     <div class="mb-3">
 
+      <label for="author" class="form-label">autore</label>
+      <input
+        id="author"
+        name="author"
+        value="{{old('author', $post->author_id)}}"
+        class="form-control"
+        placeholder=""
+        type="number"
+      >
+      <div id="" class="form-text"></div>
+    </div>
+        {{-- --------------------------- --}}
+    <div class="mb-3">
+
       <label for="text" class="form-label">testo</label>
       <textarea
       class="form-control"

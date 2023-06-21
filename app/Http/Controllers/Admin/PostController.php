@@ -64,6 +64,7 @@ class PostController extends Controller
         $new_post->title = $form['title'];
         $new_post->text = $form['text'];
         $new_post->reading_time = $form['reading_time'];
+        $new_post->author_id = $form['author'];
         $new_post->date = date('Y-m-d');
         $new_post->image_original_name = $form['image_original_name'];
         $new_post->image_path = $form['image_path'];

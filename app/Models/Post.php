@@ -18,6 +18,7 @@ class Post extends Model
       'reading_time',
       'image_path',
       'image_original_name',
+      'author_id',
     ];
 
     public static function generateSlug($str){
