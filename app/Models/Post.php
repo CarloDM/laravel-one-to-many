@@ -33,4 +33,8 @@ class Post extends Model
       }
       return $slug;
     }
+
+    public function author(){
+      return $this->belongsTo(Author::class);
+    }
 }
