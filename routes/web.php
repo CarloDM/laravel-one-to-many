@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Guest\PageController;
 use App\Http\Controllers\Admin\DashboardController;
 use App\Http\Controllers\Admin\PostController;
+use App\Http\Controllers\Admin\AuthorController;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -25,6 +26,7 @@ Route::middleware(['auth','verified'])
 ->group(function(){
     Route::get('/', [DashboardController::class, 'index'])->name('home');
     Route::resource('posts', PostController::class);
+    Route::resource('authors', AuthorController::class);
     Route::get('orderby/{direction}', [PostController::class, 'orderby'])->name('orderby');
 });
 
