@@ -24,7 +24,7 @@
 
             <ul>
               @foreach ( $author->posts as $post )
-              <li>{{$post->title}}</li>
+              <li><a href="{{route('admin.posts.show', $post)}}">{{$post->title}}</a></li>
               @endforeach
             </ul>
 
