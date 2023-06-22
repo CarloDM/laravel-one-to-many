@@ -14,10 +14,14 @@ return new class extends Migration
     public function up()
     {
         Schema::table('posts', function (Blueprint $table) {
-          $table->unsignedBigInteger('author_id')->nullable();
+          $table->unsignedBigInteger('author_id')->nullable()->after('id');
           $table->foreign('author_id')
                 ->references('id')
                 ->on('authors');
+                // se volessi non perdere il post relazionato all autore?
+                // ->onDelete('set_null');
+
+
         });
     }
 
@@ -29,7 +33,7 @@ return new class extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-          $table->dropForeign('posts_author_id_foreign');
+          $table->dropForeign(['author_id']);
           $table->dropColumn('author_id');
         });
     }
