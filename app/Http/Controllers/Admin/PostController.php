@@ -5,6 +5,7 @@ namespace App\Http\Controllers\admin;
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
 use App\Models\Post;
+use App\Models\Author;
 use Illuminate\Support\Composer;
 use Illuminate\Support\Facades\Storage;
 use App\Http\Requests\PostRequest;
@@ -35,11 +36,13 @@ class PostController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function create()
-    { $post = new Post();
+    {
+      $authors = Author::All();
+      $post = new Post();
       $title = 'Crea nuovo post';
       $method = 'POST';
       $route = route('admin.posts.store');
-      return view('admin.posts.create-edit', compact('title', 'method','route','post') );
+      return view('admin.posts.create-edit', compact('title', 'method','route','post','authors') );
     }
 
     /**
@@ -51,7 +54,7 @@ class PostController extends Controller
     public function store(PostRequest $request, Post $post)
     {
         // dd($request->all());
-        $form = $request;
+        $form = $request->all();
         // dd($request);
       // if(array_key_exists('image', $form)){
       //   $form['image_original_name'] = $request->file('image')->getClientOriginalName();
@@ -66,6 +69,10 @@ class PostController extends Controller
         $new_post->reading_time = $form['reading_time'];
         $new_post->author_id = $form['author'];
         $new_post->date = date('Y-m-d');
+        if(array_key_exists('image', $form )){
+          $form['image_original_name'] =  $request->file('image')->getClientOriginalName();
+          $form['image_path'] =  Storage::put('uploads/', $form['image']);
+        };
         $new_post->image_original_name = $form['image_original_name'];
         $new_post->image_path = $form['image_path'];
         // dd($request->image);
@@ -87,6 +94,7 @@ class PostController extends Controller
      */
     public function show(Post  $post)
     {
+
       $date = date_create($post->date);
       $dataformattata = date_format($date, 'd/m/y');
       return view('admin.posts.show', compact('post','dataformattata'));
@@ -100,10 +108,11 @@ class PostController extends Controller
      */
     public function edit(Post  $post)
     {
+        $authors = Author::All();
         $title = 'Edit post di:' . $post->title;
         $method = 'PUT';
         $route = route('admin.posts.update', $post);
-        return view('admin.posts.create-edit', compact('title','method','route','post') );
+        return view('admin.posts.create-edit', compact('title','method','route','post','authors') );
     }
 
     /**

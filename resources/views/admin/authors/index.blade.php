@@ -10,6 +10,8 @@
         <tr>
           <th scope="col">ID</a></th>
           <th scope="col">name</th>
+          <th scope="col">numero posts</th>
+          <th scope="col">posts pubblicati</th>
         </tr>
       </thead>
       <tbody>
@@ -17,6 +19,17 @@
         <tr>
           <th scope="row">{{$author->id}}</th>
           <th scope="row">{{$author->name}}</th>
+          <th scope="row">{{count($author->posts)}}</th>
+          <th scope="row">
+
+            <ul>
+              @foreach ( $author->posts as $post )
+              <li>{{$post->title}}</li>
+              @endforeach
+            </ul>
+
+          </th>
+
 
         </tr>
         @endforeach

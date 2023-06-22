@@ -49,14 +49,20 @@
     <div class="mb-3">
 
       <label for="author" class="form-label">autore</label>
-      <input
-        id="author"
-        name="author"
-        value="{{old('author', $post->author_id)}}"
-        class="form-control"
-        placeholder=""
-        type="number"
-      >
+      <select name="author" id="author">
+
+        <option value="" >selezionare autore</option>
+
+        @foreach ($authors as $author)
+
+        <option value="{{$author->id}}"
+          @if($author->id == old('author_id', $post->author?->id )) selected @endif
+          >{{$author->name}}</option>
+
+        @endforeach
+
+      </select>
+
       <div id="" class="form-text"></div>
     </div>
         {{-- --------------------------- --}}
