@@ -20,8 +20,6 @@ return new class extends Migration
                 ->on('authors');
                 // se volessi non perdere il post relazionato all autore?
                 // ->onDelete('set_null');
-
-
         });
     }
 
