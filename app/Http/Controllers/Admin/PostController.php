@@ -30,6 +30,11 @@ class PostController extends Controller
         return view('admin.posts.index', compact('posts', 'direction'));
     }
 
+    public function authorPosts(){
+      $authors = Author::All();
+      return view('admin.posts.author-posts', compact('authors'));
+    }
+
     /**
      * Show the form for creating a new resource.
      *

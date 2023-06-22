@@ -28,6 +28,7 @@ Route::middleware(['auth','verified'])
     Route::resource('posts', PostController::class);
     Route::resource('authors', AuthorController::class);
     Route::get('orderby/{direction}', [PostController::class, 'orderby'])->name('orderby');
+    Route::get('authorPosts', [PostController::class, 'authorPosts'])->name('authorPosts');
 });
 
 require __DIR__.'/auth.php';
