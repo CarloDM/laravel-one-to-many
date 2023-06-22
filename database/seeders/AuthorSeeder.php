@@ -20,7 +20,7 @@ class AuthorSeeder extends Seeder
         $new_author = new Author();
         $new_author->name = $value;
         $new_author->save();
-        dump('saved', $new_author);
+        // dump('saved', $new_author);
       }
 
     }
